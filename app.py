@@ -31,7 +31,7 @@ def get_secret(key: str) -> str:
 # 1. CONFIGURACIÓN DE PÁGINA
 # ============================================================================
 st.set_page_config(
-    page_title="Voice Draft",
+    page_title="Voice Draft - Thinking SpA",
     page_icon="🎙️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -39,13 +39,20 @@ st.set_page_config(
 
 st.markdown("""
     <style>
+    /* Colores corporativos Thinking SpA */
+    :root {
+        --color-primary: #F32121;
+        --color-secondary: #293654;
+        --color-white: #ffffff;
+    }
+    
     /* Header principal */
     .vd-header {
         display: flex;
         align-items: center;
         gap: 14px;
         padding: 18px 0 10px 0;
-        border-bottom: 2px solid #e8ecf0;
+        border-bottom: 3px solid #F32121;
         margin-bottom: 24px;
     }
     .vd-logo {
@@ -55,7 +62,7 @@ st.markdown("""
     .vd-title {
         font-size: 28px;
         font-weight: 800;
-        color: #1a1a2e;
+        color: #293654;
         letter-spacing: -0.5px;
         margin: 0;
         line-height: 1.1;
@@ -66,7 +73,7 @@ st.markdown("""
         margin: 2px 0 0 0;
     }
     .vd-badge {
-        background: linear-gradient(135deg, #0066cc, #0044aa);
+        background: linear-gradient(135deg, #F32121, #D71D1D);
         color: white;
         font-size: 10px;
         font-weight: 700;
@@ -80,15 +87,24 @@ st.markdown("""
 
     /* Contenedores de capas */
     .layer-box {
-        border-left: 4px solid #0066cc;
+        border-left: 4px solid #293654;
         padding: 10px 14px;
         border-radius: 4px;
         background-color: #f0f4ff;
         margin: 6px 0;
     }
-    .layer-complete { border-left-color: #28a745; background-color: #f0fff4; }
-    .layer-pending  { border-left-color: #ffc107; background-color: #fffbf0; }
-    .layer-error    { border-left-color: #ff4b4b; background-color: #fff5f5; }
+    .layer-complete { 
+        border-left-color: #F32121; 
+        background-color: #ffe6e6; 
+    }
+    .layer-pending  { 
+        border-left-color: #293654; 
+        background-color: #f0f4ff; 
+    }
+    .layer-error    { 
+        border-left-color: #F32121; 
+        background-color: #ffe6e6; 
+    }
 
     /* Badges */
     .badge {
@@ -99,9 +115,18 @@ st.markdown("""
         font-weight: bold;
         margin-left: 6px;
     }
-    .badge-success { background-color: #d4edda; color: #155724; }
-    .badge-pending { background-color: #fff3cd; color: #856404; }
-    .badge-error   { background-color: #f8d7da; color: #721c24; }
+    .badge-success { 
+        background-color: #ffe6e6; 
+        color: #F32121; 
+    }
+    .badge-pending { 
+        background-color: #e8ecf0; 
+        color: #293654; 
+    }
+    .badge-error   { 
+        background-color: #ffe6e6; 
+        color: #F32121; 
+    }
 
     /* Alerta de secrets */
     .secrets-warning {
@@ -196,12 +221,12 @@ with st.sidebar:
 # ============================================================================
 st.markdown("""
     <div class="vd-header">
-        <div class="vd-logo">🎙️</div>
+        <img src="https://thinking.cl/logo.png" width="40" style="border-radius: 4px;">
         <div>
             <p class="vd-title">Voice Draft</p>
-            <p class="vd-subtitle">Tu pensamiento en voz, convertido en documento profesional</p>
+            <p class="vd-subtitle">Documentos profesionales desde tu voz</p>
         </div>
-        <div class="vd-badge">by Thinking</div>
+        <div class="vd-badge">Thinking SpA</div>
     </div>
 """, unsafe_allow_html=True)
 
@@ -228,7 +253,7 @@ with col2:
     )
 
 SECCIONES_DISPONIBLES = [
-    "Objetivo", "Alcance", "Definiciones", "Descripción",
+    "Objetivo", "Alcance", "Definiciones", "Contenido",
     "Metodología", "Resultados", "Conclusiones"
 ]
 
@@ -423,7 +448,7 @@ if capas_ok:
                     "Objetivo":    "{{OBJETIVO}}",
                     "Alcance":     "{{ALCANCE}}",
                     "Definiciones":"{{DEFINICIONES}}",
-                    "Descripción": "{{DESCRIPCION}}",
+                    "Contenido":   "{{CONTENIDO}}",
                     "Metodología": "{{METODOLOGIA}}",
                     "Resultados":  "{{RESULTADOS}}",
                     "Conclusiones":"{{CONCLUSIONES}}"
